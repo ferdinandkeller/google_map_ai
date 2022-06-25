@@ -66,11 +66,11 @@ function random_city_pair (): { start_city: City, end_city: City } {
 interface Trip {
   start_city: City,
   end_city: City,
-  duration: number | null
+  duration?: number
 }
 
 /**
- * Generate a random trip between two cities and compute its duration. If an error occurs, returns null.
+ * Generate a random trip between two cities and compute its duration. If an error occurs, returns no value for duration.
  * @param browser an instance of puppeteer.Browser
  * @returns 
  */
@@ -119,11 +119,10 @@ async function generate_random_trip (browser: Browser): Promise<Trip>  {
     // return the computed duration
     return { start_city, end_city, duration }
   } catch {
-    // if there was an error during extraction, return null
     try {
       await page.close()
     } finally {
-      return { start_city, end_city, duration: null }
+      return { start_city, end_city }
     }
   }
 }
@@ -157,8 +156,18 @@ async function scrap_data() {
       generate_random_trip(browser)
     ])
 
-    // save the new trips
-    let successful_trips = trips.filter(trip => trip.duration !== null)
+    // save the new trips in a file
+    let successful_trips = trips.filter(trip => trip.duration !== undefined).map(trip => {
+      return {
+        start_city_name: trip.start_city.name,
+        start_city_lat: trip.start_city.lat,
+        start_city_lng: trip.start_city.lng,
+        end_city_name: trip.end_city.name,
+        end_city_lat: trip.end_city.lat,
+        end_city_lng: trip.end_city.lng,
+        duration: trip.duration
+      }
+    })
     successful_extractions += successful_trips.length
     if (successful_trips.length > 0) {
       stat(output_filename, (_, stats) => {
