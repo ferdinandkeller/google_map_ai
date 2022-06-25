@@ -1,0 +1,5 @@
+# Google Map AI
+
+This project originates from a will to improve a **Traveling Salesman Algorithm** I was working on some time ago. The goal of the TSA is to find the shortest path you can take to go through some cities. And in the algorithm, at some point, you need to have a distance matrix between each of the cities. You can either use a physical distance matrix or a temporal distance matrix. Most of the time we use the straight line distance between the two points, which is really not that good of an approximation. You could also query the real distances using some online api like google map's, but it is *really* slow (and if you have n cities, you will have to do n*(n-1)/2 requests, which scales quadratically).
+
+And so here comes this project. The goal is to train a neural network to find the temporal distances between two coordinates using google map's data. Of course the NN won't be 100% accurate, but as long as it is really fast and gives better approximations than using a straight line, it will be a success ! Here we will only look at distances between french cities, as I am myself french, but you can train the AI yourself on any dataset you like.

@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "removeComments": true,
+    "outDir": "./dist",
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "esModuleInterop": true
+  },
+  "folders": {
+    "src": "./src",
+  }
+}
