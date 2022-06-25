@@ -186,8 +186,8 @@ async function scrap_data() {
 }
 
 // start data extraction
-const input_filename = '../cities.json'
-const output_filename = '../trips.json'
+const input_filename = '../cities_france.json'
+const output_filename = '../trips_france.json'
 const cities: DatasetCity[] = JSON.parse(readFileSync(input_filename, 'utf-8'))
 const city_count = cities.length
 const set_count = 10
