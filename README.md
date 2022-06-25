@@ -1,4 +1,4 @@
-# Google Map AI
+# Google Map Temporal Distances AI
 
 This project originates from a will to improve a **Traveling Salesman Algorithm** I was working on some time ago. The goal of the TSA is to find the shortest path you can take to go through some cities. And in the algorithm, at some point, you need to have a distance matrix between each of the cities. You can either use a physical distance matrix or a temporal distance matrix. Most of the time we use the straight line distance between the two points, which is really not that good of an approximation. You could also query the real distances using some online api like google map's, but it is *really* slow (and if you have n cities, you will have to do n*(n-1)/2 requests, which scales quadratically).
 
